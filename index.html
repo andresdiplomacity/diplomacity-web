@@ -117,7 +117,7 @@
         /* ==================== HERO CON PARALLAX MEJORADO ==================== */
         .hero {
             position: relative;
-            padding: 120px 24px 140px;
+            padding: 80px 24px 100px;
             text-align: center;
             background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
             overflow: hidden;
@@ -225,9 +225,9 @@
         }
 
         .hero h1 {
-            font-size: 3.2em;
-            line-height: 1.15;
-            margin-bottom: 20px;
+            font-size: 2.8em;
+            line-height: 1.2;
+            margin-bottom: 18px;
             color: var(--text-dark);
             font-weight: 700;
             animation: fadeInUp 1.4s ease-out;
@@ -236,10 +236,10 @@
         }
 
         .hero .subtitle {
-            font-size: 1.32em;
+            font-size: 1.2em;
             color: var(--text-mid);
             max-width: 700px;
-            margin: 0 auto 36px;
+            margin: 0 auto 28px;
             line-height: 1.5;
             animation: fadeInUp 1.6s ease-out;
             word-wrap: break-word;
@@ -466,12 +466,41 @@
             padding: 24px 28px;
             margin-bottom: 20px;
             transition: all 0.3s;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
 
         .benefit-item:hover {
             transform: translateX(8px);
             box-shadow: 0 8px 24px rgba(42, 37, 80, 0.1);
             background: rgba(255,255,255,0.9);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: var(--lavanda-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 4px;
+        }
+
+        .benefit-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--lavanda);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .benefit-content {
+            flex: 1;
         }
 
         .benefit-item h3 {
@@ -797,20 +826,40 @@
             <h2>¿Por qué elegir <span class="accent">Diplomacity?</span></h2>
             <div class="benefits-list">
                 <div class="benefit-item">
-                    <h3>🎯 Enfoque 100% en proyección internacional</h3>
-                    <p>No hacemos comunicación local ni marketing genérico. Somos especialistas en posicionar territorios, instituciones y ecosistemas en el escenario global.</p>
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8"/><path d="m8 8 8 8"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Enfoque 100% en proyección internacional</h3>
+                        <p>No hacemos comunicación local ni marketing genérico. Somos especialistas en posicionar territorios, instituciones y ecosistemas en el escenario global.</p>
+                    </div>
                 </div>
                 <div class="benefit-item">
-                    <h3>🌍 Experiencia en ecosistemas de innovación</h3>
-                    <p>Entendemos la dinámica de polos tecnológicos, clusters industriales y gobiernos que buscan atraer talento e inversión internacional.</p>
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Experiencia en ecosistemas de innovación</h3>
+                        <p>Entendemos la dinámica de polos tecnológicos, clusters industriales y gobiernos que buscan atraer talento e inversión internacional.</p>
+                    </div>
                 </div>
                 <div class="benefit-item">
-                    <h3>📊 Metodología basada en resultados</h3>
-                    <p>Trabajamos con objetivos claros, KPIs medibles y estrategias probadas en otros territorios exitosos.</p>
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Metodología basada en resultados</h3>
+                        <p>Trabajamos con objetivos claros, KPIs medibles y estrategias probadas en otros territorios exitosos.</p>
+                    </div>
                 </div>
                 <div class="benefit-item">
-                    <h3>🤝 Red de contactos estratégicos</h3>
-                    <p>Acceso directo a stakeholders clave en Europa, Latinoamérica y Norteamérica para acelerar tu internacionalización.</p>
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Red de contactos estratégicos</h3>
+                        <p>Acceso directo a stakeholders clave en Europa, Latinoamérica y Norteamérica para acelerar tu internacionalización.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -821,7 +870,7 @@
         <div class="container" style="text-align: center;">
             <div class="section-tag">Conectemos</div>
             <h2>¿Listo para ganar <span class="accent">visibilidad global?</span></h2>
-            <p style="max-width: 600px; margin: 0 auto 32px; color: var(--text-mid); font-size: 1.12em;">Conversemos sobre cómo podemos ayudarte a posicionar tu territorio, polo tecnológico o institución en el escenario internacional.</p>
+            <p style="max-width: 600px; margin: 0 auto 32px; color: var(--text-mid); font-size: 1.12em;">.</p>
             <a href="/cdn-cgi/l/email-protection#91f0fff5e3f4e2d1f5f8e1fdfefcf0bff2f8e5e8aee2e4f3fbf4f2e5acd2feffe2e4fde5f0b4a3a1e2fef3e3f4b4a3a1e2f4e3e7f8f2f8fee2b4a3a1d5f8e1fdfefcf0f2f8e5e8b7f3fef5e8acd9fefdf0b4a3a1d0fff5e35238e2b4a3d2b4a1d0b4a1d0dcf4b4a3a1f6e4e2e5f0e3523cf0b4a3a1f2fefffef2f4e3b4a3a1fc5230e2b4a3a1e2fef3e3f4b4a3a1fdfee2b4a3a1e2f4e3e7f8f2f8fee2b4a3a1f5f4b4a3a1d5f8e1fdfefcf0f2f8e5e8b4a3a1e1f0e3f0b4a3a1fcf8b4a3a1fee3f6f0fff8ebf0f2f85222ffb4a3d7e5f4e3e3f8e5fee3f8febfb4a1d0b4a1d0dffefcf3e3f4b4a2d0b4a3a1b4a1d0dee3f6f0fff8ebf0f2f85222ffb4a2d0b4a3a1b4a1d0c5f4fd5238f7fefffeb4a2d0b4a3a1b4a1d0b4a1d0d6e3f0f2f8f0e2b0" class="cta-button">ME INTERESA →</a>
         </div>
     </section>
