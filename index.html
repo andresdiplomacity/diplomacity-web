@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diplomacity | Consultoría Estratégica en Proyección Internacional</title>
+    <style>
+        /* === PALETA DE 3 COLORES PASTEL === */
+        :root {
+            --lavanda: #7B68EE;
+            --menta: #A8DCC8;
+            --rosa: #F5B8C4;
+            --lavanda-light: #EDEAFC;
+            --menta-light: #E8F7F1;
+            --rosa-light: #FDEEF1;
+            --text-dark: #2a2550;
+            --text-mid: #5a5580;
+            --text-light: #9a96b8;
+            --white: #ffffff;
+            --bg: #FAFBFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(250, 251, 255, 0.95);
+            border-bottom: 1px solid rgba(197, 184, 240, 0.28);
+            padding: 0 24px;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 130px;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 108px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-mid);
+            text-decoration: none;
+            font-size: 0.92em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text-dark); }
+
+        .nav-cta {
+            background: var(--lavanda) !important;
+            color: var(--text-dark) !important;
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            transition: opacity 0.2s, transform 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.85 !important;
+            transform: translateY(-1px);
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            padding: 120px 24px 140px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(123, 104, 238, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 30px) rotate(5deg); }
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 32px;
+            display: block;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--menta-light);
+            border: 1px solid var(--menta);
+            color: var(--text-mid);
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 7px 18px;
+            border-radius: 50px;
+            margin-bottom: 28px;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-badge::before {
+            content: "→";
+            color: var(--menta);
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8em, 6.5vw, 5.2em);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 .accent { color: var(--lavanda); }
+
+        .hero .subtitle {
+            font-size: 1.12em;
+            color: var(--text-mid);
+            max-width: 580px;
+            margin: 0 auto 36px;
+            line-height: 1.75;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--rosa);
+            color: var(--text-dark);
+            padding: 15px 38px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1em;
+            text-decoration: none;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 6px 24px rgba(245, 184, 196, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(245, 184, 196, 0.55);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section { 
+            padding: 100px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fondos alternados con parallax */
+        section:nth-child(odd) {
+            background: linear-gradient(180deg, var(--menta-light) 0%, rgba(168, 220, 200, 0.3) 100%);
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(180deg, var(--rosa-light) 0%, rgba(245, 184, 196, 0.2) 100%);
+        }
+
+        #servicios {
+            background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--menta-light) 100%);
+        }
+
+        #clientes {
+            background: linear-gradient(135deg, var(--rosa-light) 0%, var(--lavanda-light) 100%);
+        }
+
+        #diferencial {
+            background: linear-gradient(135deg, var(--menta-light) 0%, var(--rosa-light) 100%);
+        }
+
+        #contacto {
+            background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
+        }
+
+        /* Efecto parallax sutil en scroll */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--lavanda-light);
+            color: var(--lavanda);
+            font-size: 0.74em;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 22px;
+        }
+
+        .section-tag-inverted {
+            display: inline-block;
+            background: var(--lavanda);
+            color: var(--white);
+            font-size: 0.74em;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 22px;
+        }
+
+        h2 {
+            font-size: clamp(1.8em, 4vw, 2.8em);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+        }
+
+        h2 .accent { color: var(--lavanda); }
+
+        .section-intro {
+            font-size: 1.05em;
+            color: var(--text-mid);
+            max-width: none;
+            white-space: nowrap;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        /* ==================== SERVICIOS ==================== */
+        #servicios { background: var(--white); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+        }
+
+        .service-card {
+            border: 1.5px solid rgba(197, 184, 240, 0.3);
+            border-radius: 18px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--lavanda), var(--menta));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(197, 184, 240, 0.7);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(197, 184, 240, 0.22);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: var(--white);
+            border: 1.5px solid #d8d4e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .service-icon-box svg {
+            width: 26px;
+            height: 26px;
+            stroke: #3a3550;
+            fill: none;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .service-card h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .service-card > p {
+            color: var(--text-mid);
+            font-size: 0.93em;
+            line-height: 1.68;
+            margin-bottom: 0;
+        }
+
+        /* ==================== AUDIENCIAS ==================== */
+        #clientes { background: var(--lavanda-light); }
+
+        .audiences-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .audience-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(197, 184, 240, 0.28);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .audience-card:hover {
+            border-color: var(--menta);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(168, 220, 200, 0.2);
+        }
+
+        .audience-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--white);
+            border: 1.5px solid #d8d4e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+        }
+
+        .audience-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #3a3550;
+            fill: none;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .audience-card h3 {
+            font-size: 0.97em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .audience-card p {
+            font-size: 0.86em;
+            color: var(--text-mid);
+            line-height: 1.5;
+        }
+
+        /* ==================== DIFERENCIAL ==================== */
+        #diferencial { background: var(--white); }
+
+        .value-props {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .value-prop {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .value-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--rosa-light);
+            border: 1.5px solid var(--rosa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 800;
+            color: #c4a0a8;
+        }
+
+        .value-prop-text h3 {
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .value-prop-text p {
+            font-size: 0.9em;
+            color: var(--text-mid);
+            line-height: 1.65;
+        }
+
+        /* ==================== CONTACTO ==================== */
+        #contacto {
+            background: var(--lavanda-light);
+            text-align: center;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255,255,255,0.55);
+            text-align: center;
+            padding: 34px 24px;
+            font-size: 0.88em;
+        }
+
+        footer strong { color: white; }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .hero-logo {
+                max-width: 300px;
+            }
+            
+            .nav-logo img {
+                height: 86px;
+            }
+            
+            .nav-links li:not(:last-child) { display: none; }
+            .hero { padding: 72px 24px 88px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .audiences-grid { grid-template-columns: repeat(2, 1fr); }
+            .value-props { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="diplomacity_logo_violet.png" alt="Diplomacity">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#clientes">Clientes</a></li>
+                <li><a href="#diferencial">Nosotros</a></li>
+                <li><a href="#contacto" class="nav-cta">Conversemos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="container">
+            <h1>Tu organización,<br>visible <span class="accent">en el mundo.</span></h1>
+            <p class="subtitle">
+                Ayudamos a instituciones, ciudades, universidades, clusters tech y ecosistemas de innovación
+                a conseguir visibilidad internacional y atraer inversiones, talentos y oportunidades globales.
+            </p>
+        </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+        <div class="container">
+            <div class="section-tag">Servicios</div>
+            <h2>Soluciones para tu <span class="accent">proyección global</span></h2>
+            <p class="section-intro">Paquetes estratégicos completos para posicionar tu organización en el escenario internacional</p>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="12" y2="18"/></svg>
+                    </div>
+                    <h3>Kit de Identidad Internacional</h3>
+                    <p>Paquete completo de materiales profesionales bilingües (español/inglés) para presentar tu organización de forma efectiva ante audiencias globales.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+                    </div>
+                    <h3>Hoja de Ruta de Proyección Estratégica</h3>
+                    <p>Plan estratégico integral para posicionar tu organización internacionalmente, con objetivos claros, audiencias definidas y métricas de éxito.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+                    </div>
+                    <h3>Preparación para Eventos Internacionales</h3>
+                    <p>Asesoría completa para maximizar el impacto de tu participación en ferias, conferencias y misiones comerciales internacionales.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3>Monitoreo de Oportunidades de Financiamiento</h3>
+                    <p>Servicio de inteligencia para identificar y aprovechar convocatorias, fondos y programas internacionales alineados con tus objetivos.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M2 21v-2a5 5 0 0 1 10 0v2"/><path d="M20 21v-1.5a3.5 3.5 0 0 0-3-3.47"/></svg>
+                    </div>
+                    <h3>Activación de Networking Estratégico</h3>
+                    <p>Conexión directa con actores clave del ecosistema internacional: inversores, empresas, instituciones y redes especializadas.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <h3>Storytelling Institucional</h3>
+                    <p>Construcción de narrativas potentes que comunican tu propuesta de valor, diferenciación y casos de éxito de forma memorable.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PARA QUIÉN -->
+    <section id="clientes">
+        <div class="container">
+            <div class="section-tag-inverted">Destinatarios</div>
+            <h2>Organizaciones que buscan <span class="accent">impacto global</span></h2>
+            <p class="section-intro">Especializados en instituciones y ecosistemas que quieren proyectarse internacionalmente</p>
+            <div class="audiences-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 21V7"/><path d="M16 21V7"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><path d="M3 11h18"/><path d="M7 7V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/></svg>
+                    </div>
+                    <h3>Polos Tecnológicos</h3>
+                    <p>Clusters y parques tech que buscan atraer empresas internacionales</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 10 5 21"/><polyline points="19 10 19 21"/><polyline points="9 10 9 21"/><polyline points="15 10 15 21"/><polyline points="3 10 12 3 21 10"/></svg>
+                    </div>
+                    <h3>Gobiernos Locales</h3>
+                    <p>Ciudades que quieren posicionarse como destinos de inversión</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="22 10 12 3 2 10 12 17 22 10"/><path d="M6 12v6a6 6 0 0 0 12 0v-6"/><line x1="22" y1="10" x2="22" y2="16"/></svg>
+                    </div>
+                    <h3>Instituciones Académicas</h3>
+                    <p>Universidades y centros de investigación internacionalizándose</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C12 2 7 7 7 13a5 5 0 0 0 10 0c0-6-5-11-5-11z"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/><circle cx="12" cy="13" r="1.5"/></svg>
+                    </div>
+                    <h3>Ecosistemas de Innovación</h3>
+                    <p>Hubs, incubadoras y aceleradoras expandiendo su alcance</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="13" width="20" height="8" rx="1"/><polyline points="2 13 7 8 11 11 16 5 22 13"/><line x1="6" y1="21" x2="6" y2="13"/><line x1="12" y1="21" x2="12" y2="13"/><line x1="18" y1="21" x2="18" y2="13"/></svg>
+                    </div>
+                    <h3>Clusters Industriales</h3>
+                    <p>Sectores productivos buscando visibilidad global</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3>Organizaciones Regionales</h3>
+                    <p>Entidades de promoción económica y desarrollo territorial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ DIPLOMACITY -->
+    <section id="diferencial">
+        <div class="container">
+            <div class="section-tag">Diferencial</div>
+            <h2>¿Por qué elegir <span class="accent">Diplomacity?</span></h2>
+            <p class="section-intro">No solo estrategia — entregamos resultados concretos y accionables desde el primer día</p>
+            <div class="value-props">
+
+                <div class="value-prop">
+                    <div class="value-number">01</div>
+                    <div class="value-prop-text">
+                        <h3>Enfoque en Resultados Concretos</h3>
+                        <p>No solo estrategia: entregamos materiales listos para usar y acciones implementables inmediatamente</p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">02</div>
+                    <div class="value-prop-text">
+                        <h3>Experiencia Internacional Real</h3>
+                        <p>Conocimiento directo de ecosistemas globales, protocolos institucionales y mejores prácticas internacionales</p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">03</div>
+                    <div class="value-prop-text">
+                        <h3>Metodología Probada</h3>
+                        <p>Procesos estructurados basados en casos de éxito de ciudades y ecosistemas líderes mundialmente</p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">04</div>
+                    <div class="value-prop-text">
+                        <h3>Red Internacional Activa</h3>
+                        <p>Conexiones reales con actores clave: inversores, instituciones, empresas y redes especializadas</p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">05</div>
+                    <div class="value-prop-text">
+                        <h3>Comunicación Bilingüe Nativa</h3>
+                        <p>Todos los materiales en español e inglés profesional, adaptados culturalmente para cada audiencia</p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">06</div>
+                    <div class="value-prop-text">
+                        <h3>Personalización Total</h3>
+                        <p>Cada proyecto se diseña específicamente para tu contexto, fortalezas y objetivos únicos</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <div class="container">
+            <div class="section-tag">Contacto</div>
+            <h2>¿Listo para dar <span class="accent">el siguiente paso?</span></h2>
+            <p class="section-intro">Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos de proyección internacional</p>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="mailto:andres@diploma.city?subject=Me%20interesa%20Diplomacity&body=Hola,%0D%0A%0D%0AMe%20gustaría%20conocer%20más%20sobre%20sus%20servicios%20de%20proyección%20internacional.%0D%0A%0D%0ANombre:%0D%0AOrganización:%0D%0ATeléfono:%0D%0A%0D%0AGracias" class="btn-primary" style="font-size: 1.2em; padding: 18px 48px;">
+                    ME INTERESA →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p><strong>© 2025 Diplomacity</strong> — Consultoría Estratégica en Proyección Internacional</p>
+            <p style="margin-top: 8px; opacity: 0.55;">Ayudamos a territorios e instituciones a conseguir visibilidad internacional</p>
+        </div>
+    </footer>
+
+</body>
+</html>
