@@ -87,7 +87,7 @@
 
         .nav-cta {
             background: var(--lavanda) !important;
-            color: var(--text-dark) !important;
+            color: white !important;
             padding: 8px 22px;
             border-radius: 50px;
             font-weight: 700 !important;
@@ -99,29 +99,113 @@
             transform: translateY(-1px);
         }
 
-        /* ==================== HERO ==================== */
+        /* HAMBURGUESA (MÓVIL) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: all 0.3s;
+        }
+
+        /* ==================== HERO CON PARALLAX MEJORADO ==================== */
         .hero {
+            position: relative;
             padding: 120px 24px 140px;
             text-align: center;
             background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
-            position: relative;
             overflow: hidden;
         }
 
+        /* Elementos flotantes animados MUY VISIBLES */
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(123, 104, 238, 0.1) 0%, transparent 70%);
-            animation: float 20s ease-in-out infinite;
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168, 220, 200, 0.4) 0%, transparent 70%);
+            animation: float1 15s ease-in-out infinite;
+            border-radius: 50%;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(30px, 30px) rotate(5deg); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(123, 104, 238, 0.35) 0%, transparent 70%);
+            animation: float2 18s ease-in-out infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes float1 {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1); 
+                opacity: 0.4;
+            }
+            33% { 
+                transform: translate(50px, -40px) scale(1.1); 
+                opacity: 0.6;
+            }
+            66% { 
+                transform: translate(-30px, 50px) scale(0.95); 
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1) rotate(0deg); 
+                opacity: 0.35;
+            }
+            50% { 
+                transform: translate(60px, -60px) scale(1.15) rotate(10deg); 
+                opacity: 0.55;
+            }
+        }
+
+        /* Círculos decorativos adicionales */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 15%;
+            width: 100px;
+            height: 100px;
+            background: rgba(245, 184, 196, 0.25);
+            animation: float1 12s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 20%;
+            width: 80px;
+            height: 80px;
+            background: rgba(168, 220, 200, 0.3);
+            animation: float2 14s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            bottom: 20%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: rgba(123, 104, 238, 0.2);
+            animation: float1 16s ease-in-out infinite;
         }
 
         .hero > * {
@@ -135,6 +219,18 @@
             height: auto;
             margin: 0 auto 32px;
             display: block;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-badge {
@@ -143,90 +239,77 @@
             gap: 8px;
             background: var(--menta-light);
             border: 1px solid var(--menta);
-            color: var(--text-mid);
-            font-size: 0.85em;
-            font-weight: 600;
-            padding: 7px 18px;
+            color: var(--text-dark);
+            padding: 6px 16px;
             border-radius: 50px;
-            margin-bottom: 28px;
-            letter-spacing: 0.2px;
-        }
-
-        .hero-badge::before {
-            content: "→";
-            color: var(--menta);
-            font-weight: 800;
+            font-size: 0.84em;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: fadeInUp 1.2s ease-out;
         }
 
         .hero h1 {
-            font-size: clamp(2.8em, 6.5vw, 5.2em);
-            font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -2px;
-            margin-bottom: 28px;
+            font-size: 3.2em;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 700;
+            animation: fadeInUp 1.4s ease-out;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
-
-        .hero h1 .accent { color: var(--lavanda); }
 
         .hero .subtitle {
-            font-size: 1.12em;
+            font-size: 1.32em;
             color: var(--text-mid);
-            max-width: 580px;
+            max-width: 700px;
             margin: 0 auto 36px;
-            line-height: 1.75;
+            line-height: 1.5;
+            animation: fadeInUp 1.6s ease-out;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        .btn-primary {
-            display: inline-block;
-            background: var(--rosa);
-            color: var(--text-dark);
-            padding: 15px 38px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1em;
-            text-decoration: none;
-            transition: transform 0.25s, box-shadow 0.25s;
-            box-shadow: 0 6px 24px rgba(245, 184, 196, 0.45);
+        .accent {
+            background: linear-gradient(90deg, var(--lavanda), var(--menta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(245, 184, 196, 0.55);
-        }
-
-        /* ==================== SECTIONS ==================== */
-        section { 
-            padding: 100px 24px;
+        /* ==================== SECCIONES CON PARALLAX ==================== */
+        section {
             position: relative;
-            overflow: hidden;
+            padding: 90px 24px;
+            transition: transform 0.1s ease-out;
         }
 
-        /* Fondos alternados con parallax */
-        section:nth-child(odd) {
-            background: linear-gradient(180deg, var(--menta-light) 0%, rgba(168, 220, 200, 0.3) 100%);
+        /* Fondos alternados con GRADIENTES MÁS VISIBLES */
+        section:nth-of-type(2) {
+            background: linear-gradient(180deg, var(--menta-light) 0%, rgba(168, 220, 200, 0.4) 100%);
         }
 
-        section:nth-child(even) {
-            background: linear-gradient(180deg, var(--rosa-light) 0%, rgba(245, 184, 196, 0.2) 100%);
+        section:nth-of-type(3) {
+            background: linear-gradient(180deg, var(--rosa-light) 0%, rgba(245, 184, 196, 0.35) 100%);
         }
 
-        #servicios {
+        section:nth-of-type(4) {
             background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--menta-light) 100%);
         }
 
-        #clientes {
+        section:nth-of-type(5) {
             background: linear-gradient(135deg, var(--rosa-light) 0%, var(--lavanda-light) 100%);
         }
 
-        #diferencial {
+        section:nth-of-type(6) {
             background: linear-gradient(135deg, var(--menta-light) 0%, var(--rosa-light) 100%);
         }
 
-        #contacto {
+        section:nth-of-type(7) {
             background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
         }
 
-        /* Efecto parallax sutil en scroll */
+        /* Glassmorphism más visible en cada sección */
         section::before {
             content: '';
             position: absolute;
@@ -234,8 +317,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.5) 0%, transparent 60%);
             pointer-events: none;
+            opacity: 0.6;
         }
 
         .section-tag {
@@ -248,257 +332,307 @@
             text-transform: uppercase;
             padding: 5px 14px;
             border-radius: 50px;
-            margin-bottom: 22px;
-        }
-
-        .section-tag-inverted {
-            display: inline-block;
-            background: var(--lavanda);
-            color: var(--white);
-            font-size: 0.74em;
-            font-weight: 700;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 50px;
-            margin-bottom: 22px;
-        }
-
-        h2 {
-            font-size: clamp(1.8em, 4vw, 2.8em);
-            font-weight: 800;
-            letter-spacing: -0.8px;
-            line-height: 1.15;
-            margin-bottom: 18px;
-            color: var(--text-dark);
-        }
-
-        h2 .accent { color: var(--lavanda); }
-
-        .section-intro {
-            font-size: 1.05em;
-            color: var(--text-mid);
-            max-width: none;
-            white-space: nowrap;
-            line-height: 1.7;
-            margin-bottom: 36px;
-        }
-
-        /* ==================== SERVICIOS ==================== */
-        #servicios { background: var(--white); }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 22px;
-        }
-
-        .service-card {
-            border: 1.5px solid rgba(197, 184, 240, 0.3);
-            border-radius: 18px;
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--lavanda), var(--menta));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: rgba(197, 184, 240, 0.7);
-            transform: translateY(-5px);
-            box-shadow: 0 16px 48px rgba(197, 184, 240, 0.22);
-        }
-
-        .service-card:hover::before { opacity: 1; }
-
-        .service-icon-box {
-            width: 44px;
-            height: 44px;
-            border-radius: 11px;
-            background: var(--white);
-            border: 1.5px solid #d8d4e8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin-bottom: 16px;
         }
 
-        .service-icon-box svg {
-            width: 26px;
-            height: 26px;
-            stroke: #3a3550;
+        h2 {
+            font-size: 2.6em;
+            line-height: 1.2;
+            margin-bottom: 48px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* ==================== SERVICIOS (GRID CARDS) ==================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(42, 37, 80, 0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(42, 37, 80, 0.15);
+            background: rgba(255,255,255,0.9);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--lavanda-light);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .service-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--lavanda);
             fill: none;
-            stroke-width: 1.6;
+            stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
         .service-card h3 {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--text-dark);
+            font-size: 1.32em;
             margin-bottom: 12px;
-            line-height: 1.3;
+            color: var(--text-dark);
+            font-weight: 600;
         }
 
-        .service-card > p {
+        .service-card p {
             color: var(--text-mid);
-            font-size: 0.93em;
-            line-height: 1.68;
-            margin-bottom: 0;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .service-card li {
+            color: var(--text-mid);
+            padding-left: 24px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .service-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--lavanda);
+            font-weight: 700;
         }
 
         /* ==================== AUDIENCIAS ==================== */
-        #clientes { background: var(--lavanda-light); }
-
-        .audiences-grid {
+        .audience-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
         }
 
         .audience-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(197, 184, 240, 0.28);
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 16px;
-            padding: 28px 20px;
+            padding: 28px;
             text-align: center;
-            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: 2;
+            transition: all 0.3s;
         }
 
         .audience-card:hover {
-            border-color: var(--menta);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 32px rgba(168, 220, 200, 0.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 36px rgba(42, 37, 80, 0.12);
+            background: rgba(255,255,255,0.85);
         }
 
         .audience-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--white);
-            border: 1.5px solid #d8d4e8;
+            width: 64px;
+            height: 64px;
+            background: var(--menta-light);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 14px;
+            margin: 0 auto 16px;
         }
 
         .audience-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: #3a3550;
+            width: 32px;
+            height: 32px;
+            stroke: var(--menta);
             fill: none;
-            stroke-width: 1.6;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            stroke-width: 2;
         }
 
         .audience-card h3 {
-            font-size: 0.97em;
-            font-weight: 700;
+            font-size: 1.18em;
+            margin-bottom: 10px;
             color: var(--text-dark);
-            margin-bottom: 8px;
         }
 
         .audience-card p {
-            font-size: 0.86em;
             color: var(--text-mid);
+            font-size: 0.94em;
             line-height: 1.5;
         }
 
         /* ==================== DIFERENCIAL ==================== */
-        #diferencial { background: var(--white); }
-
-        .value-props {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .value-prop {
-            display: flex;
-            gap: 18px;
-            align-items: flex-start;
-            position: relative;
-            z-index: 2;
-        }
-
-        .value-number {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
+        .benefit-item {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--lavanda);
             border-radius: 12px;
-            background: var(--rosa-light);
-            border: 1.5px solid var(--rosa);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            font-weight: 800;
-            color: #c4a0a8;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
         }
 
-        .value-prop-text h3 {
-            font-size: 1em;
-            font-weight: 700;
+        .benefit-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(42, 37, 80, 0.1);
+            background: rgba(255,255,255,0.9);
+        }
+
+        .benefit-item h3 {
+            font-size: 1.28em;
+            margin-bottom: 8px;
             color: var(--text-dark);
-            margin-bottom: 6px;
         }
 
-        .value-prop-text p {
-            font-size: 0.9em;
+        .benefit-item p {
             color: var(--text-mid);
-            line-height: 1.65;
+            line-height: 1.6;
         }
 
-        /* ==================== CONTACTO ==================== */
-        #contacto {
-            background: var(--lavanda-light);
-            text-align: center;
+        /* ==================== CTA ==================== */
+        .cta-button {
+            display: inline-block;
+            background: var(--lavanda);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.08em;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(123, 104, 238, 0.3);
         }
 
-        /* ==================== FOOTER ==================== */
-        footer {
-            background: var(--text-dark);
-            color: rgba(255,255,255,0.55);
-            text-align: center;
-            padding: 34px 24px;
-            font-size: 0.88em;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(123, 104, 238, 0.4);
+            background: #6b58de;
         }
-
-        footer strong { color: white; }
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
-            .hero-logo {
-                max-width: 300px;
+            .nav-links {
+                display: none;
             }
-            
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-inner {
+                height: 100px;
+            }
+
             .nav-logo img {
                 height: 86px;
             }
-            
-            .nav-links li:not(:last-child) { display: none; }
-            .hero { padding: 72px 24px 88px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .audiences-grid { grid-template-columns: repeat(2, 1fr); }
-            .value-props { grid-template-columns: 1fr; }
+
+            .hero {
+                padding: 80px 20px 100px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+                line-height: 1.2;
+            }
+
+            .hero .subtitle {
+                font-size: 1em;
+                line-height: 1.5;
+                padding: 0 10px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                line-height: 1.3;
+                margin-bottom: 32px;
+                padding: 0 10px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .section-tag {
+                font-size: 0.7em;
+                padding: 4px 12px;
+            }
+
+            .services-grid,
+            .audience-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card,
+            .audience-card,
+            .benefit-item {
+                padding: 24px 20px;
+            }
+
+            .service-card h3,
+            .audience-card h3 {
+                font-size: 1.1em;
+            }
+
+            .service-card p,
+            .audience-card p,
+            .benefit-item p {
+                font-size: 0.9em;
+            }
+
+            .cta-button {
+                padding: 14px 32px;
+                font-size: 1em;
+            }
+
+            .shape-1, .shape-2, .shape-3 {
+                display: none;
+            }
+
+            .hero::before,
+            .hero::after {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7em;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
         }
     </style>
 </head>
@@ -512,91 +646,133 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#clientes">Clientes</a></li>
-                <li><a href="#diferencial">Nosotros</a></li>
-                <li><a href="#contacto" class="nav-cta">Conversemos</a></li>
+                <li><a href="#audiencias">Para quiénes</a></li>
+                <li><a href="#diferencial">Por qué elegir</a></li>
+                <li><a href="#contacto" class="nav-cta">Contacto</a></li>
             </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
     <!-- HERO -->
-    <div class="hero">
-        <div class="container">
-            <h1>Tu organización,<br>visible <span class="accent">en el mundo.</span></h1>
-            <p class="subtitle">
-                Ayudamos a instituciones, ciudades, universidades, clusters tech y ecosistemas de innovación
-                a conseguir visibilidad internacional y atraer inversiones, talentos y oportunidades globales.
-            </p>
+    <header class="hero">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        
+        <img src="diplomacity_logo_violet.png" alt="Diplomacity" class="hero-logo">
+        <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Consultoría en Proyección Internacional
         </div>
-    </div>
+        <h1>Visibilidad global para <span class="accent">territorios innovadores</span></h1>
+        <p class="subtitle">Ayudamos a polos tecnológicos, ciudades, ecosistemas de innovación e instituciones a posicionarse internacionalmente para atraer inversiones, talento y oportunidades estratégicas.</p>
+        <a href="#contacto" class="cta-button">Comencemos →</a>
+    </header>
 
     <!-- SERVICIOS -->
     <section id="servicios">
         <div class="container">
-            <div class="section-tag">Servicios</div>
-            <h2>Soluciones para tu <span class="accent">proyección global</span></h2>
-            <p class="section-intro">Paquetes estratégicos completos para posicionar tu organización en el escenario internacional</p>
+            <div class="section-tag">Qué hacemos</div>
+            <h2>Servicios <span class="accent">especializados</span></h2>
             <div class="services-grid">
-
                 <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="12" y2="18"/></svg>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
                     </div>
                     <h3>Kit de Identidad Internacional</h3>
-                    <p>Paquete completo de materiales profesionales bilingües (español/inglés) para presentar tu organización de forma efectiva ante audiencias globales.</p>
+                    <p>Materiales profesionales bilingües para presentar tu territorio al mundo.</p>
+                    <ul>
+                        <li>One-pagers ejecutivos en español e inglés</li>
+                        <li>Presentación institucional PowerPoint/PDF</li>
+                        <li>Banco de mensajes clave (messaging)</li>
+                        <li>Fact sheet con datos destacados</li>
+                    </ul>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <h3>Hoja de Ruta de Proyección Estratégica</h3>
-                    <p>Plan estratégico integral para posicionar tu organización internacionalmente, con objetivos claros, audiencias definidas y métricas de éxito.</p>
+                    <p>Plan personalizado para ganar visibilidad internacional en 12-24 meses.</p>
+                    <ul>
+                        <li>Diagnóstico de posicionamiento actual</li>
+                        <li>Objetivos SMART y KPIs específicos</li>
+                        <li>Calendario de acciones priorizadas</li>
+                        <li>Estrategia de alianzas y partnerships</li>
+                    </ul>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                     </div>
                     <h3>Preparación para Eventos Internacionales</h3>
-                    <p>Asesoría completa para maximizar el impacto de tu participación en ferias, conferencias y misiones comerciales internacionales.</p>
+                    <p>Maximiza tu impacto en ferias, conferencias y misiones comerciales.</p>
+                    <ul>
+                        <li>Coaching de pitch y elevator speech</li>
+                        <li>Brief de contexto del evento</li>
+                        <li>Agenda de reuniones y networking</li>
+                        <li>Materiales adaptados al público objetivo</li>
+                    </ul>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon-box">
+                    <div class="service-icon">
                         <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     </div>
                     <h3>Monitoreo de Oportunidades de Financiamiento</h3>
-                    <p>Servicio de inteligencia para identificar y aprovechar convocatorias, fondos y programas internacionales alineados con tus objetivos.</p>
+                    <p>Identificamos convocatorias internacionales alineadas a tus prioridades.</p>
+                    <ul>
+                        <li>Rastreo de fondos europeos y multilaterales</li>
+                        <li>Análisis de elegibilidad y fit estratégico</li>
+                        <li>Alertas personalizadas de deadlines</li>
+                        <li>Apoyo en formulación de propuestas</li>
+                    </ul>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M2 21v-2a5 5 0 0 1 10 0v2"/><path d="M20 21v-1.5a3.5 3.5 0 0 0-3-3.47"/></svg>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <h3>Activación de Networking Estratégico</h3>
-                    <p>Conexión directa con actores clave del ecosistema internacional: inversores, empresas, instituciones y redes especializadas.</p>
+                    <p>Conexiones directas con actores clave en tu sector e industria.</p>
+                    <ul>
+                        <li>Mapeo de stakeholders relevantes</li>
+                        <li>Introducción a ecosistemas objetivo</li>
+                        <li>Facilitación de reuniones bilaterales</li>
+                        <li>Seguimiento de oportunidades de colaboración</li>
+                    </ul>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     </div>
                     <h3>Storytelling Institucional</h3>
-                    <p>Construcción de narrativas potentes que comunican tu propuesta de valor, diferenciación y casos de éxito de forma memorable.</p>
+                    <p>Narrativa estratégica que comunica tu propuesta de valor única.</p>
+                    <ul>
+                        <li>Arquetipos y posicionamiento diferencial</li>
+                        <li>Casos de éxito documentados</li>
+                        <li>Contenido para web y redes sociales</li>
+                        <li>Capacitación en comunicación de impacto</li>
+                    </ul>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- PARA QUIÉN -->
-    <section id="clientes">
+    <!-- AUDIENCIAS -->
+    <section id="audiencias">
         <div class="container">
-            <div class="section-tag-inverted">Destinatarios</div>
-            <h2>Organizaciones que buscan <span class="accent">impacto global</span></h2>
-            <p class="section-intro">Especializados en instituciones y ecosistemas que quieren proyectarse internacionalmente</p>
-            <div class="audiences-grid">
+            <div class="section-tag">Para quiénes</div>
+            <h2>¿A quién <span class="accent">acompañamos?</span></h2>
+            <div class="audience-grid">
                 <div class="audience-card">
                     <div class="audience-icon">
                         <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 21V7"/><path d="M16 21V7"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><path d="M3 11h18"/><path d="M7 7V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/></svg>
@@ -648,82 +824,78 @@
         <div class="container">
             <div class="section-tag">Diferencial</div>
             <h2>¿Por qué elegir <span class="accent">Diplomacity?</span></h2>
-            <p class="section-intro">No solo estrategia — entregamos resultados concretos y accionables desde el primer día</p>
-            <div class="value-props">
-
-                <div class="value-prop">
-                    <div class="value-number">01</div>
-                    <div class="value-prop-text">
-                        <h3>Enfoque en Resultados Concretos</h3>
-                        <p>No solo estrategia: entregamos materiales listos para usar y acciones implementables inmediatamente</p>
-                    </div>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <h3>🎯 Enfoque 100% en proyección internacional</h3>
+                    <p>No hacemos comunicación local ni marketing genérico. Somos especialistas en posicionar territorios, instituciones y ecosistemas en el escenario global.</p>
                 </div>
-
-                <div class="value-prop">
-                    <div class="value-number">02</div>
-                    <div class="value-prop-text">
-                        <h3>Experiencia Internacional Real</h3>
-                        <p>Conocimiento directo de ecosistemas globales, protocolos institucionales y mejores prácticas internacionales</p>
-                    </div>
+                <div class="benefit-item">
+                    <h3>🌍 Experiencia en ecosistemas de innovación</h3>
+                    <p>Entendemos la dinámica de polos tecnológicos, clusters industriales y gobiernos que buscan atraer talento e inversión internacional.</p>
                 </div>
-
-                <div class="value-prop">
-                    <div class="value-number">03</div>
-                    <div class="value-prop-text">
-                        <h3>Metodología Probada</h3>
-                        <p>Procesos estructurados basados en casos de éxito de ciudades y ecosistemas líderes mundialmente</p>
-                    </div>
+                <div class="benefit-item">
+                    <h3>📊 Metodología basada en resultados</h3>
+                    <p>Trabajamos con objetivos claros, KPIs medibles y estrategias probadas en otros territorios exitosos.</p>
                 </div>
-
-                <div class="value-prop">
-                    <div class="value-number">04</div>
-                    <div class="value-prop-text">
-                        <h3>Red Internacional Activa</h3>
-                        <p>Conexiones reales con actores clave: inversores, instituciones, empresas y redes especializadas</p>
-                    </div>
+                <div class="benefit-item">
+                    <h3>🤝 Red de contactos estratégicos</h3>
+                    <p>Acceso directo a stakeholders clave en Europa, Latinoamérica y Norteamérica para acelerar tu internacionalización.</p>
                 </div>
-
-                <div class="value-prop">
-                    <div class="value-number">05</div>
-                    <div class="value-prop-text">
-                        <h3>Comunicación Bilingüe Nativa</h3>
-                        <p>Todos los materiales en español e inglés profesional, adaptados culturalmente para cada audiencia</p>
-                    </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">06</div>
-                    <div class="value-prop-text">
-                        <h3>Personalización Total</h3>
-                        <p>Cada proyecto se diseña específicamente para tu contexto, fortalezas y objetivos únicos</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
     <!-- CONTACTO -->
     <section id="contacto">
-        <div class="container">
-            <div class="section-tag">Contacto</div>
-            <h2>¿Listo para dar <span class="accent">el siguiente paso?</span></h2>
-            <p class="section-intro">Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos de proyección internacional</p>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="mailto:andres@diploma.city?subject=Me%20interesa%20Diplomacity&body=Hola,%0D%0A%0D%0AMe%20gustaría%20conocer%20más%20sobre%20sus%20servicios%20de%20proyección%20internacional.%0D%0A%0D%0ANombre:%0D%0AOrganización:%0D%0ATeléfono:%0D%0A%0D%0AGracias" class="btn-primary" style="font-size: 1.2em; padding: 18px 48px;">
-                    ME INTERESA →
-                </a>
-            </div>
+        <div class="container" style="text-align: center;">
+            <div class="section-tag">Conectemos</div>
+            <h2>¿Listo para ganar <span class="accent">visibilidad global?</span></h2>
+            <p style="max-width: 600px; margin: 0 auto 32px; color: var(--text-mid); font-size: 1.12em;">Conversemos sobre cómo podemos ayudarte a posicionar tu territorio, polo tecnológico o institución en el escenario internacional.</p>
+            <a href="/cdn-cgi/l/email-protection#91f0fff5e3f4e2d1f5f8e1fdfefcf0bff2f8e5e8aee2e4f3fbf4f2e5acd2feffe2e4fde5f0b4a3a1e2fef3e3f4b4a3a1e2f4e3e7f8f2f8fee2b4a3a1d5f8e1fdfefcf0f2f8e5e8b7f3fef5e8acd9fefdf0b4a3a1d0fff5e35238e2b4a3d2b4a1d0b4a1d0dcf4b4a3a1f6e4e2e5f0e3523cf0b4a3a1f2fefffef2f4e3b4a3a1fc5230e2b4a3a1e2fef3e3f4b4a3a1fdfee2b4a3a1e2f4e3e7f8f2f8fee2b4a3a1f5f4b4a3a1d5f8e1fdfefcf0f2f8e5e8b4a3a1e1f0e3f0b4a3a1fcf8b4a3a1fee3f6f0fff8ebf0f2f85222ffb4a3d7e5f4e3e3f8e5fee3f8febfb4a1d0b4a1d0dffefcf3e3f4b4a2d0b4a3a1b4a1d0dee3f6f0fff8ebf0f2f85222ffb4a2d0b4a3a1b4a1d0c5f4fd5238f7fefffeb4a2d0b4a3a1b4a1d0b4a1d0d6e3f0f2f8f0e2b0" class="cta-button">ME INTERESA →</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p><strong>© 2025 Diplomacity</strong> — Consultoría Estratégica en Proyección Internacional</p>
-            <p style="margin-top: 8px; opacity: 0.55;">Ayudamos a territorios e instituciones a conseguir visibilidad internacional</p>
-        </div>
-    </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // PARALLAX SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            // Hero parallax
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const heroOffset = hero.offsetTop;
+                const heroHeight = hero.offsetHeight;
+                if (scrolled < heroHeight) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            }
 
-</body>
-</html>
+            // Sections parallax
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+                    const progress = (scrolled + windowHeight - sectionTop) / (windowHeight + sectionHeight);
+                    const yOffset = (progress - 0.5) * 30;
+                    section.style.transform = `translateY(${yOffset}px)`;
+                }
+            });
+
+            // Cards fade in on scroll
+            const cards = document.querySelectorAll('.service-card, .audience-card, .benefit-item');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight * 0.85) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initial setup for cards
+        document.addEventList
