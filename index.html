@@ -1,786 +1,538 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diplomacity | Consultoría Estratégica en Proyección Internacional</title>
-    <style>
-        /* === PALETA DE 3 COLORES PASTEL === */
-        :root {
-            --lavanda: #7B68EE;
-            --menta: #A8DCC8;
-            --rosa: #F5B8C4;
-            --lavanda-light: #EDEAFC;
-            --menta-light: #E8F7F1;
-            --rosa-light: #FDEEF1;
-            --text-dark: #2a2550;
-            --text-mid: #5a5580;
-            --text-light: #9a96b8;
-            --white: #ffffff;
-            --bg: #FAFBFF;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--bg);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ==================== NAVBAR ==================== */
-        nav {
-            position: relative;
-            z-index: 100;
-            background: rgba(250, 251, 255, 0.95);
-            border-bottom: 1px solid rgba(197, 184, 240, 0.28);
-            padding: 0 24px;
-        }
-
-        .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 130px;
-        }
-
-        .nav-logo {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-logo img {
-            height: 140px;
-            width: auto;
-            transition: height 0.3s;
-        }
-
-        .lang-selector {
-            position: absolute;
-            right: 0px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.05em;
-            font-weight: 700;
-        }
-
-        .lang-selector a {
-            color: var(--text-mid);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .lang-selector a.active {
-            color: var(--lavanda);
-        }
-
-        .lang-selector a:hover {
-            color: var(--text-dark);
-        }
-
-        .lang-selector-divider {
-            color: var(--text-light);
-            font-weight: 400;
-        }
-
-        /* ==================== HERO ==================== */
-        .hero {
-            padding: 120px 24px 140px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(123, 104, 238, 0.1) 0%, transparent 70%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(30px, 30px) rotate(5deg); }
-        }
-
-        .hero > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-logo {
-            max-width: 500px;
-            width: 100%;
-            height: auto;
-            margin: 0 auto 32px;
-            display: block;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--menta-light);
-            border: 1px solid var(--menta);
-            color: var(--text-mid);
-            font-size: 0.85em;
-            font-weight: 600;
-            padding: 7px 18px;
-            border-radius: 50px;
-            margin-bottom: 28px;
-            letter-spacing: 0.2px;
-        }
-
-        .hero-badge::before {
-            content: "→";
-            color: var(--menta);
-            font-weight: 800;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8em, 6.5vw, 5.2em);
-            font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -2px;
-            margin-bottom: 28px;
-        }
-
-        .hero h1 .accent { color: var(--lavanda); }
-
-        .hero .subtitle {
-            font-size: 1.12em;
-            color: var(--text-mid);
-            max-width: 580px;
-            margin: 0 auto 36px;
-            line-height: 1.75;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background: var(--rosa);
-            color: var(--text-dark);
-            padding: 15px 38px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1em;
-            text-decoration: none;
-            transition: transform 0.25s, box-shadow 0.25s;
-            box-shadow: 0 6px 24px rgba(245, 184, 196, 0.45);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(245, 184, 196, 0.55);
-        }
-
-        /* ==================== SECTIONS ==================== */
-        section { 
-            padding: 100px 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Fondos alternados con parallax */
-        section:nth-child(odd) {
-            background: linear-gradient(180deg, var(--menta-light) 0%, rgba(168, 220, 200, 0.3) 100%);
-        }
-
-        section:nth-child(even) {
-            background: linear-gradient(180deg, var(--rosa-light) 0%, rgba(245, 184, 196, 0.2) 100%);
-        }
-
-        #servicios {
-            background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--menta-light) 100%);
-        }
-
-        #clientes {
-            background: linear-gradient(135deg, var(--rosa-light) 0%, var(--lavanda-light) 100%);
-        }
-
-        #diferencial {
-            background: linear-gradient(135deg, var(--menta-light) 0%, var(--rosa-light) 100%);
-        }
-
-        #contacto {
-            background: linear-gradient(135deg, var(--lavanda-light) 0%, var(--rosa-light) 100%);
-        }
-
-        /* Efecto parallax sutil en scroll */
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .section-tag {
-            display: inline-block;
-            background: var(--lavanda-light);
-            color: var(--lavanda);
-            font-size: 0.74em;
-            font-weight: 700;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 50px;
-            margin-bottom: 22px;
-        }
-
-        .section-tag-inverted {
-            display: inline-block;
-            background: var(--lavanda);
-            color: var(--white);
-            font-size: 0.74em;
-            font-weight: 700;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 50px;
-            margin-bottom: 22px;
-        }
-
-        h2 {
-            font-size: clamp(1.8em, 4vw, 2.8em);
-            font-weight: 800;
-            letter-spacing: -0.8px;
-            line-height: 1.15;
-            margin-bottom: 18px;
-            color: var(--text-dark);
-        }
-
-        h2 .accent { color: var(--lavanda); }
-
-        .section-intro {
-            font-size: 1.05em;
-            color: var(--text-mid);
-            max-width: none;
-            white-space: nowrap;
-            line-height: 1.7;
-            margin-bottom: 36px;
-        }
-
-        /* ==================== SERVICIOS ==================== */
-        #servicios { background: var(--white); }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 22px;
-        }
-
-        .service-card {
-            border: 1.5px solid rgba(197, 184, 240, 0.3);
-            border-radius: 18px;
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--lavanda), var(--menta));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: rgba(197, 184, 240, 0.7);
-            transform: translateY(-5px);
-            box-shadow: 0 16px 48px rgba(197, 184, 240, 0.22);
-        }
-
-        .service-card:hover::before { opacity: 1; }
-
-        .service-icon-box {
-            width: 44px;
-            height: 44px;
-            border-radius: 11px;
-            background: var(--white);
-            border: 1.5px solid #d8d4e8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .service-icon-box svg {
-            width: 26px;
-            height: 26px;
-            stroke: #3a3550;
-            fill: none;
-            stroke-width: 1.6;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .service-card h3 {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .service-card > p {
-            color: var(--text-mid);
-            font-size: 0.93em;
-            line-height: 1.68;
-            margin-bottom: 0;
-        }
-
-        .service-deliverables {
-            margin-top: 14px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .service-deliverables span {
-            background: var(--lavanda-light);
-            color: var(--lavanda);
-            font-size: 0.72em;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ==================== AUDIENCIAS ==================== */
-        #clientes { background: var(--lavanda-light); }
-
-        .audiences-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .audience-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(197, 184, 240, 0.28);
-            border-radius: 16px;
-            padding: 28px 20px;
-            text-align: center;
-            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: 2;
-        }
-
-        .audience-card:hover {
-            border-color: var(--menta);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 32px rgba(168, 220, 200, 0.2);
-        }
-
-        .audience-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--white);
-            border: 1.5px solid #d8d4e8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 14px;
-        }
-
-        .audience-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: #3a3550;
-            fill: none;
-            stroke-width: 1.6;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .audience-card h3 {
-            font-size: 0.97em;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .audience-card p {
-            font-size: 0.86em;
-            color: var(--text-mid);
-            line-height: 1.5;
-        }
-
-        /* ==================== DIFERENCIAL ==================== */
-        #diferencial { background: var(--white); }
-
-        .value-props {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .value-prop {
-            display: flex;
-            gap: 18px;
-            align-items: flex-start;
-            position: relative;
-            z-index: 2;
-        }
-
-        .value-number {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--rosa-light);
-            border: 1.5px solid var(--rosa);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            font-weight: 800;
-            color: #c4a0a8;
-        }
-
-        .value-prop-text h3 {
-            font-size: 1em;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-        }
-
-        .value-prop-text p {
-            font-size: 0.9em;
-            color: var(--text-mid);
-            line-height: 1.65;
-        }
-
-        /* ==================== CONTACTO ==================== */
-        #contacto {
-            background: var(--lavanda-light);
-            text-align: center;
-        }
-
-        /* ==================== FOOTER ==================== */
-        footer {
-            background: var(--text-dark);
-            color: rgba(255,255,255,0.55);
-            text-align: center;
-            padding: 34px 24px;
-            font-size: 0.88em;
-        }
-
-        footer strong { color: white; }
-
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 768px) {
-            .hero-logo {
-                max-width: 300px;
-            }
-            
-            .nav-logo img {
-                height: 100px;
-            }
-            .hero { padding: 72px 24px 88px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .audiences-grid { grid-template-columns: repeat(2, 1fr); }
-            .value-props { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diplomacity | Consultoría Estratégica en Proyección Internacional</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'><circle cx='80' cy='80' r='62' fill='%23EEEBFA'/><line x1='16' y1='32' x2='80' y2='80' stroke='%234438C4' stroke-width='9' stroke-linecap='round'/><line x1='144' y1='128' x2='80' y2='80' stroke='%235B4FE3' stroke-width='9' stroke-linecap='round'/><circle cx='80' cy='80' r='13' fill='%237B68EE'/><circle cx='80' cy='80' r='5' fill='%23fff'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#15132B;
+  --ink-soft:#211E3E;
+  --violet:#27457E;
+  --violet-deep:#172C54;
+  --violet-bright:#3E68AE;
+  --violet-soft:#9DB4DC;
+  --brand-rgb:39,69,126;
+  --lav-50:#F6F5FC;
+  --lav-100:#EEEBFA;
+  --lav-200:#E2DDF6;
+  --mint:#1F9D74;
+  --text:#26233F;
+  --text-mid:#5C5878;
+  --text-soft:#8C88A6;
+  --line:rgba(40,30,90,0.10);
+  --line-strong:rgba(40,30,90,0.16);
+  --white:#ffffff;
+  --shadow-card:0 1px 2px rgba(21,19,43,.04), 0 12px 32px rgba(21,19,43,.06);
+  --shadow-lift:0 1px 2px rgba(21,19,43,.05), 0 22px 48px rgba(var(--brand-rgb),.14);
+  --r-sm:10px; --r-md:14px; --r-lg:20px;
+  --maxw:1140px;
+  --display:'Space Grotesk', system-ui, sans-serif;
+  --body:'Inter', system-ui, -apple-system, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+::selection{background:var(--violet);color:#fff;}
+
+/* ============ NAV ============ */
+header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line);}
+.nav-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.nav-logo{display:flex;align-items:center;gap:14px;}
+.brand-mark{width:68px;height:68px;display:block;flex-shrink:0;}
+.brand-word{font-family:var(--display);font-weight:600;font-size:2.1rem;letter-spacing:-.03em;color:var(--ink);line-height:1;}
+.nav-links{display:flex;align-items:center;gap:34px;}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--text-mid);position:relative;transition:color .2s;}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--violet);transition:width .25s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.lang{display:flex;align-items:center;gap:9px;font-size:.85rem;font-weight:600;}
+.lang a{color:var(--text-soft);transition:color .2s;cursor:pointer;}
+.lang a.active{color:var(--violet);}
+.lang a:hover{color:var(--ink);}
+.lang .sep{color:var(--line-strong);font-weight:400;}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-weight:600;font-size:.95rem;border-radius:50px;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, background .2s ease;border:1px solid transparent;}
+.btn-primary{background:var(--violet);color:#fff;padding:12px 24px;box-shadow:0 6px 20px rgba(var(--brand-rgb),.28);}
+.btn-primary:hover{background:var(--violet-deep);transform:translateY(-2px);box-shadow:0 12px 30px rgba(var(--brand-rgb),.36);}
+.btn-nav{padding:10px 20px;font-size:.9rem;}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);padding:12px 24px;}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-2px);}
+.btn-light{background:#fff;color:var(--violet-deep);padding:14px 30px;font-size:1rem;box-shadow:0 8px 28px rgba(0,0,0,.18);}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.24);}
+.nav-toggle{display:none;}
+
+/* ============ HERO ============ */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 120% at 88% 0%, var(--lav-100) 0%, var(--lav-50) 42%, #fff 76%);padding:74px 28px 64px;}
+.hero-bg{position:absolute;top:50%;right:-160px;transform:translateY(-50%);width:660px;height:660px;pointer-events:none;opacity:.55;}
+.hero-bg .spin{transform-origin:330px 330px;animation:globespin 60s linear infinite;}
+@keyframes globespin{to{transform:rotate(360deg);}}
+.hero-inner{position:relative;max-width:720px;}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,5vw,4.2rem);line-height:1.02;letter-spacing:-.04em;color:var(--ink);margin:0 0 20px;}
+.hero h1 .accent{color:var(--violet);}
+.hero .lead{font-size:clamp(1.02rem,1.3vw,1.14rem);color:var(--text-mid);max-width:50ch;margin:0 0 28px;line-height:1.6;}
+.hero-pillars{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:22px;border-top:1px solid var(--line);}
+.hero-pillars span{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;letter-spacing:.02em;color:var(--text-mid);white-space:nowrap;}
+.hero-pillars span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--violet);flex-shrink:0;}
+@media (max-width:980px){.hero-bg{opacity:.3;right:-280px;}}
+@media (max-width:680px){.hero{padding:72px 24px 64px;}.hero-bg{display:none;}}
+@media (prefers-reduced-motion:reduce){.hero-bg .spin{animation:none;}}
+
+/* ============ TRUST STRIP ============ */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;}
+.trust-inner{display:grid;grid-template-columns:repeat(3,1fr);}
+.trust-item{display:flex;align-items:center;gap:13px;padding:20px 24px;}
+.trust-item + .trust-item{border-left:1px solid var(--line);}
+.trust-ico{width:42px;height:42px;flex-shrink:0;border-radius:11px;background:var(--lav-50);border:1px solid var(--lav-200);display:flex;align-items:center;justify-content:center;}
+.trust-ico svg{width:22px;height:22px;stroke:var(--violet);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.trust-item h4{font-family:var(--display);font-size:.98rem;font-weight:600;color:var(--ink);line-height:1.2;}
+.trust-item p{font-size:.84rem;color:var(--text-soft);line-height:1.4;}
+
+/* ============ SECTION SHELL ============ */
+section{padding:72px 28px;position:relative;}
+.sec-head{max-width:680px;margin-bottom:40px;}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);margin-bottom:14px;}
+.tag::before{content:'— ';opacity:.5;}
+h2{font-family:var(--display);font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:600;letter-spacing:-.025em;line-height:1.12;color:var(--ink);margin-bottom:14px;}
+h2 .accent{color:var(--violet);}
+.sec-intro{font-size:1.02rem;color:var(--text-mid);line-height:1.62;max-width:62ch;}
+
+/* ============ SERVICIOS ============ */
+#servicios{background:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.service-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 22px;background:#fff;transition:border-color .3s, transform .3s, box-shadow .3s;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--violet),var(--violet-bright));transform:scaleX(0);transform-origin:left;transition:transform .35s ease;}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);border-color:transparent;}
+.service-card:hover::after{transform:scaleX(1);}
+.svc-ico{width:44px;height:44px;border-radius:12px;background:var(--lav-50);border:1px solid var(--lav-200);display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:background .3s,border-color .3s;}
+.service-card:hover .svc-ico{background:var(--violet);border-color:var(--violet);}
+.svc-ico svg{width:25px;height:25px;stroke:var(--violet);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s;}
+.service-card:hover .svc-ico svg{stroke:#fff;}
+.service-card h3{font-family:var(--display);font-size:1.08rem;font-weight:600;color:var(--ink);margin-bottom:9px;line-height:1.28;}
+.service-card > p{color:var(--text-mid);font-size:.9rem;line-height:1.58;}
+.svc-tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;}
+.svc-tags span{font-size:.7rem;font-weight:600;letter-spacing:.03em;color:var(--text-mid);background:var(--lav-50);border:1px solid var(--line);padding:5px 11px;border-radius:7px;}
+
+/* ============ DESTINATARIOS ============ */
+#clientes{background:var(--lav-50);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.aud-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:22px 20px;transition:transform .3s, box-shadow .3s, border-color .3s;display:flex;gap:15px;align-items:flex-start;}
+.aud-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card);border-color:var(--lav-200);}
+.aud-ico{width:46px;height:46px;flex-shrink:0;border-radius:12px;background:var(--lav-50);border:1px solid var(--lav-200);display:flex;align-items:center;justify-content:center;}
+.aud-ico svg{width:23px;height:23px;stroke:var(--violet);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.aud-card h3{font-family:var(--display);font-size:1.02rem;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.aud-card p{font-size:.89rem;color:var(--text-mid);line-height:1.5;}
+
+/* ============ DIFERENCIAL (dark) ============ */
+#diferencial{background:var(--ink);color:#fff;overflow:hidden;}
+#diferencial::before{content:'';position:absolute;top:-30%;right:-10%;width:560px;height:560px;background:radial-gradient(circle,rgba(123,104,238,.22) 0%,transparent 68%);pointer-events:none;}
+#diferencial .tag{color:var(--violet-bright);}
+#diferencial h2{color:#fff;}
+#diferencial h2 .accent{color:var(--violet-bright);}
+#diferencial .sec-intro{color:rgba(255,255,255,.66);}
+.vp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 36px;position:relative;}
+.vp{position:relative;padding-top:22px;}
+.vp::before{content:'';position:absolute;top:0;left:0;width:46px;height:3px;background:linear-gradient(90deg,var(--violet-bright),transparent);}
+.vp .num{font-family:var(--display);font-size:.82rem;font-weight:600;color:var(--violet-bright);letter-spacing:.1em;margin-bottom:14px;display:block;}
+.vp h3{font-family:var(--display);font-size:1.16rem;font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3;}
+.vp p{font-size:.93rem;color:rgba(255,255,255,.62);line-height:1.65;}
+
+/* ============ CONTACTO ============ */
+#contacto{background:linear-gradient(135deg,var(--violet) 0%,var(--violet-deep) 100%);text-align:center;overflow:hidden;}
+#contacto::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.16) 0%,transparent 55%);pointer-events:none;}
+#contacto .tag{color:rgba(255,255,255,.8);}
+#contacto h2{color:#fff;max-width:18ch;margin-left:auto;margin-right:auto;}
+#contacto .sec-intro{color:rgba(255,255,255,.85);margin:0 auto 38px;text-align:center;}
+.contact-meta{margin-top:30px;font-size:.92rem;color:rgba(255,255,255,.78);display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.contact-meta a{font-weight:600;color:#fff;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:1px;}
+.contact-meta .sep{opacity:.5;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink-soft);color:rgba(255,255,255,.6);padding:44px 28px 30px;}
+.foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1);}
+.foot-logo{display:flex;align-items:center;gap:11px;margin-bottom:18px;}
+.foot-logo .brand-mark{width:36px;height:36px;}
+.foot-logo .brand-word{font-family:var(--display);font-weight:600;font-size:1.4rem;letter-spacing:-.03em;color:#fff;line-height:1;}
+.foot-brand p{font-size:.9rem;max-width:340px;line-height:1.6;}
+.foot-cols{display:flex;gap:64px;flex-wrap:wrap;}
+.foot-col h5{font-family:var(--display);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px;}
+.foot-col a{display:block;font-size:.92rem;color:rgba(255,255,255,.72);margin-bottom:11px;transition:color .2s;}
+.foot-col a:hover{color:#fff;}
+.foot-bottom{padding-top:26px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.45);}
+.foot-bottom strong{color:rgba(255,255,255,.8);font-weight:600;}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .services-grid,.aud-grid,.vp-grid{grid-template-columns:repeat(2,1fr);}
+  .trust-inner{grid-template-columns:1fr;}
+  .trust-item + .trust-item{border-left:none;border-top:1px solid var(--line);}
+}
+@media (max-width:760px){
+  .brand-mark{width:40px;height:40px;}
+  .brand-word{font-size:1.5rem;}
+  section{padding:56px 24px;}
+  .hero{padding:54px 24px 48px;}
+  .services-grid,.aud-grid,.vp-grid{grid-template-columns:1fr;}
+  .foot-grid{flex-direction:column;}
+}
+/* mobile menu */
+.mmenu{display:none;position:fixed;inset:0;z-index:300;background:rgba(21,19,43,.6);backdrop-filter:blur(4px);}
+.mmenu.open{display:block;}
+.mmenu-panel{position:absolute;top:0;right:0;width:min(82vw,340px);height:100%;background:#fff;padding:28px 26px;display:flex;flex-direction:column;gap:6px;box-shadow:-20px 0 60px rgba(0,0,0,.2);}
+.mmenu-panel .mm-close{align-self:flex-end;width:42px;height:42px;border:1px solid var(--line-strong);border-radius:10px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.mmenu-panel .mm-close svg{width:20px;height:20px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;}
+.mmenu-panel a{font-family:var(--display);font-size:1.3rem;font-weight:500;color:var(--ink);padding:14px 4px;border-bottom:1px solid var(--line);}
+.mmenu-panel .btn-primary{margin-top:20px;justify-content:center;padding:15px;}
+
+/* ===== brand-driven SVG recolor (logos + hero globe) ===== */
+[stroke="#4438C4"]{stroke:var(--violet-deep);}
+[stroke="#5B4FE3"]{stroke:var(--violet);}
+[stroke="#7B68EE"]{stroke:var(--violet-bright);}
+[stroke="#9C8CFF"]{stroke:var(--violet-soft);}
+[fill="#4438C4"]{fill:var(--violet-deep);}
+[fill="#5B4FE3"]{fill:var(--violet);}
+[fill="#7B68EE"]{fill:var(--violet-bright);}
+[fill="#9C8CFF"]{fill:var(--violet-soft);}
+
+/* ===== Tweaks panel ===== */
+.twkp{position:fixed;right:18px;bottom:18px;z-index:400;width:250px;background:#fff;border:1px solid var(--line-strong);border-radius:16px;box-shadow:0 18px 50px rgba(21,19,43,.22);font-family:var(--body);overflow:hidden;}
+.twkp-hd{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid var(--line);}
+.twkp-hd b{font-family:var(--display);font-size:.95rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+.twkp-x{appearance:none;border:none;background:transparent;cursor:pointer;color:var(--text-soft);font-size:.95rem;line-height:1;padding:4px 6px;border-radius:6px;}
+.twkp-x:hover{color:var(--ink);background:var(--lav-50);}
+.twkp-body{padding:15px;}
+.twkp-lbl{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px;}
+.twkp-swatches{display:flex;flex-direction:column;gap:8px;}
+.twkp-opt{display:flex;align-items:center;gap:11px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:border-color .2s,background .2s;}
+.twkp-opt:hover{background:var(--lav-50);}
+.twkp-opt.active{border-color:var(--violet);background:var(--lav-50);}
+.twkp-dot{width:22px;height:22px;border-radius:50%;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);}
+.twkp-name{font-size:.88rem;font-weight:500;color:var(--ink);flex:1;}
+.twkp-check{width:16px;height:16px;color:var(--violet);opacity:0;flex-shrink:0;}
+.twkp-opt.active .twkp-check{opacity:1;}
+</style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">
-                <img src="diplomacity_logo_violet.png" alt="Diplomacity">
-            </a>
-            <div class="lang-selector">
-                <a href="#" class="active">ES</a>
-                <span class="lang-selector-divider">|</span>
-                <a href="#">EN</a>
-            </div>
-        </div>
-    </nav>
+<!-- ============ NAV ============ -->
+<header>
+  <div class="container nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Diplomacity">
+      <svg class="brand-mark" viewBox="0 0 160 160" aria-hidden="true">
+        <circle cx="80" cy="80" r="58" fill="#7B68EE" opacity="0.10"/>
+        <circle cx="80" cy="80" r="36" fill="#7B68EE" opacity="0.14"/>
+        <path d="M14 30 Q80 80 80 80" fill="none" stroke="#4438C4" stroke-width="6" stroke-linecap="round"/>
+        <path d="M14 30 Q50 50 80 80" fill="none" stroke="#4438C4" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <path d="M146 130 Q80 80 80 80" fill="none" stroke="#5B4FE3" stroke-width="6" stroke-linecap="round"/>
+        <path d="M146 130 Q110 110 80 80" fill="none" stroke="#5B4FE3" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="80" cy="80" r="10" fill="#7B68EE"/>
+        <circle cx="80" cy="80" r="4" fill="#fff"/>
+        <circle cx="14" cy="30" r="3" fill="#4438C4"/>
+        <circle cx="146" cy="130" r="3" fill="#5B4FE3"/>
+      </svg>
+      <span class="brand-word">diplomacity</span>
+    </a>
+    <div class="lang"><a data-lang="es" class="active" onclick="setLang('es');return false;">ES</a><span class="sep">/</span><a data-lang="en" onclick="setLang('en');return false;">EN</a></div>
+  </div>
+</header>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div class="container">
-            <h1>Tu organización,<br>visible <span class="accent">en el mundo.</span></h1>
-            <p class="subtitle">
-                Ayudamos a instituciones, ciudades, universidades, clusters tech y ecosistemas de innovación
-                a conseguir visibilidad internacional y atraer inversiones, talentos y oportunidades globales.
-            </p>
-        </div>
+<!-- ============ HERO ============ -->
+<div class="hero" id="top">
+  <svg class="hero-bg" viewBox="0 0 660 660" aria-hidden="true" fill="none">
+    <g class="spin" stroke="#5B4FE3" stroke-opacity="0.22">
+      <circle cx="330" cy="330" r="230" stroke-width="1.2"/>
+      <ellipse cx="330" cy="330" rx="230" ry="86"/>
+      <ellipse cx="330" cy="330" rx="230" ry="160"/>
+      <ellipse cx="330" cy="330" rx="86" ry="230"/>
+      <ellipse cx="330" cy="330" rx="160" ry="230"/>
+      <line x1="100" y1="330" x2="560" y2="330"/>
+      <line x1="330" y1="100" x2="330" y2="560"/>
+    </g>
+    <circle cx="330" cy="330" r="230" fill="#7B68EE" fill-opacity="0.04"/>
+    <circle cx="214" cy="250" r="4" fill="#5B4FE3"/>
+    <circle cx="446" cy="402" r="4" fill="#7B68EE"/>
+    <path d="M214 250 Q330 300 446 402" stroke="#5B4FE3" stroke-opacity="0.35" stroke-width="1.4" stroke-dasharray="3 4"/>
+  </svg>
+  <div class="container">
+    <div class="hero-inner">
+      <h1 data-en='Your organization, <span class="accent">visible to the world.</span>'>Tu organización, <span class="accent">visible en el mundo.</span></h1>
+      <p class="lead" data-en="We help institutions, cities, universities, tech clusters and innovation ecosystems gain international visibility and attract investment, talent and global opportunities.">Ayudamos a instituciones, ciudades, universidades, clusters tech y ecosistemas de innovación a conseguir visibilidad internacional y atraer inversiones, talento y oportunidades globales.</p>
+      <div class="hero-pillars">
+        <span data-en="International strategy">Estrategia internacional</span>
+        <span data-en="Positioning">Posicionamiento</span>
+        <span data-en="Funding">Financiamiento</span>
+        <span data-en="Networking">Networking</span>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!-- SERVICIOS -->
-    <section id="servicios">
-        <div class="container">
-            <div class="section-tag">Servicios</div>
-            <h2>Soluciones para tu <span class="accent">proyección global</span></h2>
-            <p class="section-intro">Paquetes estratégicos completos para posicionar tu organización en el escenario internacional</p>
-            <div class="services-grid">
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" data-en="Services">Servicios</div>
+      <h2 data-en='Solutions for your <span class="accent">global projection</span>'>Soluciones para tu <span class="accent">proyección global</span></h2>
+      <p class="sec-intro" data-en="Complete strategic packages to position your organization on the international stage.">Paquetes estratégicos completos para posicionar tu organización en el escenario internacional.</p>
+    </div>
+    <div class="services-grid">
 
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="12" y2="18"/></svg>
-                    </div>
-                    <h3>Kit de Identidad Internacional</h3>
-                    <p>Paquete completo de materiales profesionales bilingües (español/inglés) para presentar tu organización de forma efectiva ante audiencias globales.</p>
-                    <div class="service-deliverables">
-                        <span>Dossier</span>
-                        <span>Presentación</span>
-                        <span>Brochure</span>
-                        <span>Traducción</span>
-                        <span>Branding</span>
-                    </div>
-                </div>
+      <div class="service-card reveal">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="12" y2="18"/></svg></div>
+        <h3 data-en="International Identity Kit">Kit de Identidad Internacional</h3>
+        <p data-en="A complete package of bilingual professional materials to present your organization effectively to global audiences.">Paquete completo de materiales profesionales bilingües para presentar tu organización de forma efectiva ante audiencias globales.</p>
+        <div class="svc-tags"><span data-en="Dossier">Dossier</span><span data-en="Presentation">Presentación</span><span data-en="Brochure">Brochure</span><span data-en="Translation">Traducción</span><span data-en="Branding">Branding</span></div>
+      </div>
 
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-                    </div>
-                    <h3>Hoja de Ruta de Proyección Estratégica</h3>
-                    <p>Plan estratégico integral para posicionar tu organización internacionalmente, con objetivos claros, audiencias definidas y métricas de éxito.</p>
-                    <div class="service-deliverables">
-                        <span>Plan</span>
-                        <span>Objetivos</span>
-                        <span>Audiencias</span>
-                        <span>KPIs</span>
-                        <span>Estrategia</span>
-                    </div>
-                </div>
+      <div class="service-card reveal">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div>
+        <h3 data-en="Strategic Projection Roadmap">Hoja de Ruta de Proyección Estratégica</h3>
+        <p data-en="A comprehensive strategic plan to position your organization internationally, with clear objectives, defined audiences and success metrics.">Plan estratégico integral para posicionar tu organización internacionalmente, con objetivos claros, audiencias definidas y métricas de éxito.</p>
+        <div class="svc-tags"><span data-en="Plan">Plan</span><span data-en="Objectives">Objetivos</span><span data-en="Audiences">Audiencias</span><span data-en="KPIs">KPIs</span><span data-en="Strategy">Estrategia</span></div>
+      </div>
 
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
-                    </div>
-                    <h3>Preparación para Eventos Internacionales</h3>
-                    <p>Asesoría completa para maximizar el impacto de tu participación en ferias, conferencias y misiones comerciales internacionales.</p>
-                    <div class="service-deliverables">
-                        <span>Pitch</span>
-                        <span>Discurso</span>
-                        <span>Agenda</span>
-                        <span>Protocolo</span>
-                        <span>Asesoría</span>
-                    </div>
-                </div>
+      <div class="service-card reveal">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></div>
+        <h3 data-en="International Event Preparation">Preparación para Eventos Internacionales</h3>
+        <p data-en="Complete advisory to maximize the impact of your participation in international fairs, conferences and trade missions.">Asesoría completa para maximizar el impacto de tu participación en ferias, conferencias y misiones comerciales internacionales.</p>
+        <div class="svc-tags"><span data-en="Pitch">Pitch</span><span data-en="Speech">Discurso</span><span data-en="Agenda">Agenda</span><span data-en="Protocol">Protocolo</span><span data-en="Advisory">Asesoría</span></div>
+      </div>
 
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                    </div>
-                    <h3>Monitoreo de Oportunidades de Financiamiento</h3>
-                    <p>Servicio de inteligencia para identificar y aprovechar convocatorias, fondos y programas internacionales alineados con tus objetivos.</p>
-                    <div class="service-deliverables">
-                        <span>Alertas</span>
-                        <span>Convocatorias</span>
-                        <span>Fondos</span>
-                        <span>Análisis</span>
-                        <span>Reportes</span>
-                    </div>
-                </div>
+      <div class="service-card reveal">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 data-en="Funding Opportunity Monitoring">Monitoreo de Oportunidades de Financiamiento</h3>
+        <p data-en="An intelligence service to identify and seize international calls, funds and programs aligned with your goals.">Servicio de inteligencia para identificar y aprovechar convocatorias, fondos y programas internacionales alineados con tus objetivos.</p>
+        <div class="svc-tags"><span data-en="Alerts">Alertas</span><span data-en="Calls">Convocatorias</span><span data-en="Funds">Fondos</span><span data-en="Analysis">Análisis</span><span data-en="Reports">Reportes</span></div>
+      </div>
 
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M2 21v-2a5 5 0 0 1 10 0v2"/><path d="M20 21v-1.5a3.5 3.5 0 0 0-3-3.47"/></svg>
-                    </div>
-                    <h3>Activación de Networking Estratégico</h3>
-                    <p>Conexión directa con actores clave del ecosistema internacional: inversores, empresas, instituciones y redes especializadas.</p>
-                    <div class="service-deliverables">
-                        <span>Contactos</span>
-                        <span>Reuniones</span>
-                        <span>Inversores</span>
-                        <span>Alianzas</span>
-                        <span>Redes</span>
-                    </div>
-                </div>
+      <div class="service-card reveal">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M2 21v-2a5 5 0 0 1 10 0v2"/><path d="M20 21v-1.5a3.5 3.5 0 0 0-3-3.47"/></svg></div>
+        <h3 data-en="Strategic Networking Activation">Activación de Networking Estratégico</h3>
+        <p data-en="Direct connection with key players in the international ecosystem: investors, companies, institutions and specialized networks.">Conexión directa con actores clave del ecosistema internacional: inversores, empresas, instituciones y redes especializadas.</p>
+        <div class="svc-tags"><span data-en="Contacts">Contactos</span><span data-en="Meetings">Reuniones</span><span data-en="Investors">Inversores</span><span data-en="Alliances">Alianzas</span><span data-en="Networks">Redes</span></div>
+      </div>
 
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                    </div>
-                    <h3>Storytelling Institucional</h3>
-                    <p>Construcción de narrativas potentes que comunican tu propuesta de valor, diferenciación y casos de éxito de forma memorable.</p>
-                    <div class="service-deliverables">
-                        <span>Narrativa</span>
-                        <span>Mensajes</span>
-                        <span>Casos</span>
-                        <span>Propuesta</span>
-                        <span>Pitch</span>
-                    </div>
-                </div>
+      <div class="service-card reveal">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <h3 data-en="Institutional Storytelling">Storytelling Institucional</h3>
+        <p data-en="Building powerful narratives that communicate your value proposition, differentiation and success stories memorably.">Construcción de narrativas potentes que comunican tu propuesta de valor, diferenciación y casos de éxito de forma memorable.</p>
+        <div class="svc-tags"><span data-en="Narrative">Narrativa</span><span data-en="Messaging">Mensajes</span><span data-en="Cases">Casos</span><span data-en="Proposition">Propuesta</span><span data-en="Pitch">Pitch</span></div>
+      </div>
 
-            </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESTINATARIOS ============ -->
+<section id="clientes">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" data-en="Who we serve">Destinatarios</div>
+      <h2 data-en='Organizations seeking <span class="accent">global impact</span>'>Organizaciones que buscan <span class="accent">impacto global</span></h2>
+      <p class="sec-intro" data-en="Specialized in institutions and ecosystems that want to project themselves internationally.">Especializados en instituciones y ecosistemas que quieren proyectarse internacionalmente.</p>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card reveal"><div class="aud-ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 21V7"/><path d="M16 21V7"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><path d="M3 11h18"/><path d="M7 7V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/></svg></div><div><h3 data-en="Technology Hubs">Polos Tecnológicos</h3><p data-en="Clusters and tech parks looking to attract international companies">Clusters y parques tech que buscan atraer empresas internacionales</p></div></div>
+      <div class="aud-card reveal"><div class="aud-ico"><svg viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 10 5 21"/><polyline points="19 10 19 21"/><polyline points="9 10 9 21"/><polyline points="15 10 15 21"/><polyline points="3 10 12 3 21 10"/></svg></div><div><h3 data-en="Local Governments">Gobiernos Locales</h3><p data-en="Cities that want to position themselves as investment destinations">Ciudades que quieren posicionarse como destinos de inversión</p></div></div>
+      <div class="aud-card reveal"><div class="aud-ico"><svg viewBox="0 0 24 24"><polyline points="22 10 12 3 2 10 12 17 22 10"/><path d="M6 12v6a6 6 0 0 0 12 0v-6"/><line x1="22" y1="10" x2="22" y2="16"/></svg></div><div><h3 data-en="Academic Institutions">Instituciones Académicas</h3><p data-en="Universities and research centers going international">Universidades y centros de investigación internacionalizándose</p></div></div>
+      <div class="aud-card reveal"><div class="aud-ico"><svg viewBox="0 0 24 24"><path d="M12 2C12 2 7 7 7 13a5 5 0 0 0 10 0c0-6-5-11-5-11z"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/><circle cx="12" cy="13" r="1.5"/></svg></div><div><h3 data-en="Innovation Ecosystems">Ecosistemas de Innovación</h3><p data-en="Hubs, incubators and accelerators expanding their reach">Hubs, incubadoras y aceleradoras expandiendo su alcance</p></div></div>
+      <div class="aud-card reveal"><div class="aud-ico"><svg viewBox="0 0 24 24"><rect x="2" y="13" width="20" height="8" rx="1"/><polyline points="2 13 7 8 11 11 16 5 22 13"/><line x1="6" y1="21" x2="6" y2="13"/><line x1="12" y1="21" x2="12" y2="13"/><line x1="18" y1="21" x2="18" y2="13"/></svg></div><div><h3 data-en="Industrial Clusters">Clusters Industriales</h3><p data-en="Productive sectors seeking global visibility">Sectores productivos buscando visibilidad global</p></div></div>
+      <div class="aud-card reveal"><div class="aud-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><h3 data-en="Regional Organizations">Organizaciones Regionales</h3><p data-en="Economic promotion and territorial development entities">Entidades de promoción económica y desarrollo territorial</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAL ============ -->
+<section id="diferencial">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" data-en="What sets us apart">Diferencial</div>
+      <h2 data-en='Why choose <span class="accent">Diplomacity?</span>'>¿Por qué elegir <span class="accent">Diplomacity?</span></h2>
+      <p class="sec-intro" data-en="Not just strategy — we deliver concrete, actionable results from day one.">No solo estrategia — entregamos resultados concretos y accionables desde el primer día.</p>
+    </div>
+    <div class="vp-grid">
+      <div class="vp reveal"><span class="num">01</span><h3 data-en="Focus on concrete results">Enfoque en resultados concretos</h3><p data-en="Not just strategy: we deliver ready-to-use materials and immediately implementable actions.">No solo estrategia: entregamos materiales listos para usar y acciones implementables inmediatamente.</p></div>
+      <div class="vp reveal"><span class="num">02</span><h3 data-en="Real international experience">Experiencia internacional real</h3><p data-en="Direct knowledge of global ecosystems, institutional protocols and international best practices.">Conocimiento directo de ecosistemas globales, protocolos institucionales y mejores prácticas internacionales.</p></div>
+      <div class="vp reveal"><span class="num">03</span><h3 data-en="Proven methodology">Metodología probada</h3><p data-en="Structured processes based on the success stories of world-leading cities and ecosystems.">Procesos estructurados basados en casos de éxito de ciudades y ecosistemas líderes mundialmente.</p></div>
+      <div class="vp reveal"><span class="num">04</span><h3 data-en="Active international network">Red internacional activa</h3><p data-en="Real connections with key players: investors, institutions, companies and specialized networks.">Conexiones reales con actores clave: inversores, instituciones, empresas y redes especializadas.</p></div>
+      <div class="vp reveal"><span class="num">05</span><h3 data-en="Native bilingual communication">Comunicación bilingüe nativa</h3><p data-en="All materials in professional Spanish and English, culturally adapted for each audience.">Todos los materiales en español e inglés profesional, adaptados culturalmente para cada audiencia.</p></div>
+      <div class="vp reveal"><span class="num">06</span><h3 data-en="Full customization">Personalización total</h3><p data-en="Each project is designed specifically for your context, strengths and unique objectives.">Cada proyecto se diseña específicamente para tu contexto, fortalezas y objetivos únicos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto">
+  <div class="container">
+    <div class="sec-head center reveal" style="margin-bottom:0;">
+      <div class="tag" data-en="Contact">Contacto</div>
+      <h2 data-en='Ready to take the <span style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:6px;">next step?</span>'>¿Listo para dar el <span style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:6px;">siguiente paso?</span></h2>
+      <p class="sec-intro" data-en="Let&#39;s talk about how we can help you reach your international projection goals.">Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos de proyección internacional.</p>
+      <a href="/cdn-cgi/l/email-protection#98f9f6fceafdebd8fcf1e8f4f7f5f9b6fbf1ece1a7ebedfaf2fdfbeca5d5fdbdaaa8f1f6ecfdeafdebf9bdaaa8dcf1e8f4f7f5f9fbf1ece1befaf7fce1a5d0f7f4f9b4bda8dcbda8d9bda8dcbda8d9d5fdbdaaa8ffedebecf9ea5b35f9bdaaa8fbf7f6f7fbfdeabdaaa8f55b39ebbdaaa8ebf7faeafdbdaaa8ebedebbdaaa8ebfdeaeef1fbf1f7ebbdaaa8fcfdbdaaa8e8eaf7e1fdfbfbf15b2bf6bdaaa8f1f6ecfdeaf6f9fbf1f7f6f9f4b6bda8dcbda8d9bda8dcbda8d9d6f7f5faeafda2bda8dcbda8d9d7eafff9f6f1e2f9fbf15b2bf6a2bda8dcbda8d9ccfdf45b31fef7f6f7a2bda8dcbda8d9bda8dcbda8d9dfeaf9fbf1f9eb" class="btn btn-light" data-en="I&#39;m interested →">Me interesa →</a>
+      <div class="contact-meta">
+        <span data-en="Email us at">Escríbenos a</span>
+        <a href="/cdn-cgi/l/email-protection#dfbeb1bbadbaac9fbbb6afb3b0b2bef1bcb6aba6"><span class="__cf_email__" data-cfemail="b3d2ddd7c1d6c0f3d7dac3dfdcded29dd0dac7ca">[email&#160;protected]</span></a>
+        <span class="sep">·</span>
+        <span data-en="Reply within 24–48 h">Respuesta en 24–48 h</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="foot-logo">
+          <svg class="brand-mark" viewBox="0 0 160 160" aria-hidden="true">
+            <circle cx="80" cy="80" r="58" fill="#7B68EE" opacity="0.16"/>
+            <circle cx="80" cy="80" r="36" fill="#7B68EE" opacity="0.20"/>
+            <path d="M14 30 Q80 80 80 80" fill="none" stroke="#9C8CFF" stroke-width="6" stroke-linecap="round"/>
+            <path d="M14 30 Q50 50 80 80" fill="none" stroke="#9C8CFF" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <path d="M146 130 Q80 80 80 80" fill="none" stroke="#7B68EE" stroke-width="6" stroke-linecap="round"/>
+            <path d="M146 130 Q110 110 80 80" fill="none" stroke="#7B68EE" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <circle cx="80" cy="80" r="10" fill="#9C8CFF"/>
+            <circle cx="80" cy="80" r="4" fill="#211E3E"/>
+            <circle cx="14" cy="30" r="3" fill="#9C8CFF"/>
+            <circle cx="146" cy="130" r="3" fill="#7B68EE"/>
+          </svg>
+          <span class="brand-word">diplomacity</span>
         </div>
-    </section>
-
-    <!-- PARA QUIÉN -->
-    <section id="clientes">
-        <div class="container">
-            <div class="section-tag-inverted">Destinatarios</div>
-            <h2>Organizaciones que buscan <span class="accent">impacto global</span></h2>
-            <p class="section-intro">Especializados en instituciones y ecosistemas que quieren proyectarse internacionalmente</p>
-            <div class="audiences-grid">
-                <div class="audience-card">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 21V7"/><path d="M16 21V7"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><path d="M3 11h18"/><path d="M7 7V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/></svg>
-                    </div>
-                    <h3>Polos Tecnológicos</h3>
-                    <p>Clusters y parques tech que buscan atraer empresas internacionales</p>
-                </div>
-                <div class="audience-card">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 10 5 21"/><polyline points="19 10 19 21"/><polyline points="9 10 9 21"/><polyline points="15 10 15 21"/><polyline points="3 10 12 3 21 10"/></svg>
-                    </div>
-                    <h3>Gobiernos Locales</h3>
-                    <p>Ciudades que quieren posicionarse como destinos de inversión</p>
-                </div>
-                <div class="audience-card">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24"><polyline points="22 10 12 3 2 10 12 17 22 10"/><path d="M6 12v6a6 6 0 0 0 12 0v-6"/><line x1="22" y1="10" x2="22" y2="16"/></svg>
-                    </div>
-                    <h3>Instituciones Académicas</h3>
-                    <p>Universidades y centros de investigación internacionalizándose</p>
-                </div>
-                <div class="audience-card">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C12 2 7 7 7 13a5 5 0 0 0 10 0c0-6-5-11-5-11z"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/><circle cx="12" cy="13" r="1.5"/></svg>
-                    </div>
-                    <h3>Ecosistemas de Innovación</h3>
-                    <p>Hubs, incubadoras y aceleradoras expandiendo su alcance</p>
-                </div>
-                <div class="audience-card">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="13" width="20" height="8" rx="1"/><polyline points="2 13 7 8 11 11 16 5 22 13"/><line x1="6" y1="21" x2="6" y2="13"/><line x1="12" y1="21" x2="12" y2="13"/><line x1="18" y1="21" x2="18" y2="13"/></svg>
-                    </div>
-                    <h3>Clusters Industriales</h3>
-                    <p>Sectores productivos buscando visibilidad global</p>
-                </div>
-                <div class="audience-card">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    </div>
-                    <h3>Organizaciones Regionales</h3>
-                    <p>Entidades de promoción económica y desarrollo territorial</p>
-                </div>
-            </div>
+        <p data-en="We help territories and institutions gain international visibility and attract global opportunities.">Ayudamos a territorios e instituciones a conseguir visibilidad internacional y atraer oportunidades globales.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5 data-en="Navigation">Navegación</h5>
+          <a href="#servicios" data-en="Services">Servicios</a>
+          <a href="#clientes" data-en="Who we serve">Destinatarios</a>
+          <a href="#diferencial" data-en="Why us">Por qué nosotros</a>
+          <a href="#contacto" data-en="Contact">Contacto</a>
         </div>
-    </section>
-
-    <!-- POR QUÉ DIPLOMACITY -->
-    <section id="diferencial">
-        <div class="container">
-            <div class="section-tag">Diferencial</div>
-            <h2>¿Por qué elegir <span class="accent">Diplomacity?</span></h2>
-            <p class="section-intro">No solo estrategia — entregamos resultados concretos y accionables desde el primer día</p>
-            <div class="value-props">
-
-                <div class="value-prop">
-                    <div class="value-number">01</div>
-                    <div class="value-prop-text">
-                        <h3>Enfoque en Resultados Concretos</h3>
-                        <p>No solo estrategia: entregamos materiales listos para usar y acciones implementables inmediatamente</p>
-                    </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">02</div>
-                    <div class="value-prop-text">
-                        <h3>Experiencia Internacional Real</h3>
-                        <p>Conocimiento directo de ecosistemas globales, protocolos institucionales y mejores prácticas internacionales</p>
-                    </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">03</div>
-                    <div class="value-prop-text">
-                        <h3>Metodología Probada</h3>
-                        <p>Procesos estructurados basados en casos de éxito de ciudades y ecosistemas líderes mundialmente</p>
-                    </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">04</div>
-                    <div class="value-prop-text">
-                        <h3>Red Internacional Activa</h3>
-                        <p>Conexiones reales con actores clave: inversores, instituciones, empresas y redes especializadas</p>
-                    </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">05</div>
-                    <div class="value-prop-text">
-                        <h3>Comunicación Bilingüe Nativa</h3>
-                        <p>Todos los materiales en español e inglés profesional, adaptados culturalmente para cada audiencia</p>
-                    </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">06</div>
-                    <div class="value-prop-text">
-                        <h3>Personalización Total</h3>
-                        <p>Cada proyecto se diseña específicamente para tu contexto, fortalezas y objetivos únicos</p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="foot-col">
+          <h5 data-en="Contact">Contacto</h5>
+          <a href="/cdn-cgi/l/email-protection#c7a6a9a3b5a2b487a3aeb7aba8aaa6e9a4aeb3be"><span class="__cf_email__" data-cfemail="6607080214031526020f160a090b0748050f121f">[email&#160;protected]</span></a>
+          <a href="#">LinkedIn</a>
+          <a href="#top" data-en="Back to top ↑">Volver arriba ↑</a>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-en="<strong>© 2025 Diplomacity</strong> — Strategic Consultancy in International Projection"><strong>© 2025 Diplomacity</strong> — Consultoría Estratégica en Proyección Internacional</span>
+      <span data-en="Built for territories and institutions with global ambition">Hecho para territorios e instituciones con ambición global</span>
+    </div>
+  </div>
+</footer>
 
-    <!-- CONTACTO -->
-    <section id="contacto">
-        <div class="container">
-            <div class="section-tag">Contacto</div>
-            <h2>¿Listo para dar <span class="accent">el siguiente paso?</span></h2>
-            <p class="section-intro">Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos de proyección internacional</p>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="mailto:andres@diploma.city?subject=Me%20interesa%20Diplomacity&body=Hola,%0D%0A%0D%0AMe%20gustaría%20conocer%20más%20sobre%20sus%20servicios%20de%20proyección%20internacional.%0D%0A%0D%0ANombre:%0D%0AOrganización:%0D%0ATeléfono:%0D%0A%0D%0AGracias" class="btn-primary" style="font-size: 1.2em; padding: 18px 48px;">
-                    ME INTERESA →
-                </a>
-            </div>
-        </div>
-    </section>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ===== i18n: ES <-> EN =====
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.getAttribute('data-es') === null) el.setAttribute('data-es', el.innerHTML);
+    el.innerHTML = (lang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-es');
+  });
+  document.querySelectorAll('.lang a[data-lang]').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('data-lang') === lang);
+  });
+  document.title = (lang === 'en')
+    ? 'Diplomacity | Strategic Consultancy in International Projection'
+    : 'Diplomacity | Consultoría Estratégica en Proyección Internacional';
+  try{ localStorage.setItem('dc_lang', lang); }catch(e){}
+}
+(function(){
+  var saved = 'es';
+  try{ saved = localStorage.getItem('dc_lang') || 'es'; }catch(e){}
+  if(saved === 'en') setLang('en');
+})();
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p><strong>© 2025 Diplomacity</strong> — Consultoría Estratégica en Proyección Internacional</p>
-            <p style="margin-top: 8px; opacity: 0.55;">Ayudamos a territorios e instituciones a conseguir visibilidad internacional</p>
-        </div>
-    </footer>
+// ===== scroll reveal =====
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e,i){ e.style.transitionDelay = (Math.min(i,4)*60)+'ms'; io.observe(e); });
+})();
+
+// ===== Tweaks: brand color =====
+(function(){
+  var BRANDS = {
+    navy:   {label:'Azul marino',   sw:'#27457E', vars:{'--violet':'#27457E','--violet-deep':'#172C54','--violet-bright':'#3E68AE','--violet-soft':'#9DB4DC','--brand-rgb':'39,69,126'}},
+    violet: {label:'Violeta',       sw:'#5B4FE3', vars:{'--violet':'#5B4FE3','--violet-deep':'#4438C4','--violet-bright':'#7B68EE','--violet-soft':'#9C8CFF','--brand-rgb':'91,79,227'}},
+    teal:   {label:'Verde azulado', sw:'#0E7C66', vars:{'--violet':'#0E7C66','--violet-deep':'#0A5C4B','--violet-bright':'#23A088','--violet-soft':'#7FCBBC','--brand-rgb':'14,124,102'}}
+  };
+  var TWEAKS = /*EDITMODE-BEGIN*/{
+    "brand": "navy"
+  }/*EDITMODE-END*/;
+  var current = (TWEAKS && BRANDS[TWEAKS.brand]) ? TWEAKS.brand : 'navy';
+
+  function apply(key){
+    var b = BRANDS[key]; if(!b) return;
+    var r = document.documentElement;
+    for(var k in b.vars){ r.style.setProperty(k, b.vars[k]); }
+  }
+  apply(current);
+
+  function setBrand(key){
+    if(!BRANDS[key]) return;
+    current = key; apply(key);
+    if(panel){
+      panel.querySelectorAll('.twkp-opt').forEach(function(o){
+        o.classList.toggle('active', o.getAttribute('data-k') === key);
+      });
+    }
+    try{ window.parent.postMessage({type:'__edit_mode_set_keys', edits:{brand:key}}, '*'); }catch(e){}
+  }
+
+  var panel = null;
+  function buildPanel(){
+    panel = document.createElement('div');
+    panel.className = 'twkp';
+    panel.setAttribute('data-noncommentable','');
+    var opts = '';
+    Object.keys(BRANDS).forEach(function(k){
+      var b = BRANDS[k];
+      opts += '<div class="twkp-opt'+(k===current?' active':'')+'" data-k="'+k+'">'+
+        '<span class="twkp-dot" style="background:'+b.sw+'"></span>'+
+        '<span class="twkp-name">'+b.label+'</span>'+
+        '<svg class="twkp-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+
+        '</div>';
+    });
+    panel.innerHTML =
+      '<div class="twkp-hd"><b>Tweaks</b><button class="twkp-x" aria-label="Cerrar">&#10005;</button></div>'+
+      '<div class="twkp-body"><div class="twkp-lbl">Color de marca</div><div class="twkp-swatches">'+opts+'</div></div>';
+    document.body.appendChild(panel);
+    panel.querySelector('.twkp-x').addEventListener('click', dismiss);
+    panel.querySelectorAll('.twkp-opt').forEach(function(o){
+      o.addEventListener('click', function(){ setBrand(o.getAttribute('data-k')); });
+    });
+  }
+  function show(){ if(!panel) buildPanel(); panel.style.display='block'; }
+  function hide(){ if(panel) panel.style.display='none'; }
+  function dismiss(){ hide(); try{ window.parent.postMessage({type:'__edit_mode_dismissed'},'*'); }catch(e){} }
+
+  window.addEventListener('message', function(e){
+    var t = e && e.data && e.data.type;
+    if(t === '__activate_edit_mode') show();
+    else if(t === '__deactivate_edit_mode') hide();
+  });
+  try{ window.parent.postMessage({type:'__edit_mode_available'}, '*'); }catch(e){}
+})();
+</script>
 
 </body>
 </html>
