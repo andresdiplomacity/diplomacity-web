@@ -380,10 +380,10 @@ footer{background:var(--ink-soft);color:rgba(255,255,255,.6);padding:44px 28px 3
       <div class="tag" data-en="Contact">Contacto</div>
       <h2 data-en='Ready to take the <span style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:6px;">next step?</span>'>¿Listo para dar el <span style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:6px;">siguiente paso?</span></h2>
       <p class="sec-intro" data-en="Let&#39;s talk about how we can help you reach your international projection goals.">Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos de proyección internacional.</p>
-      <a href="/cdn-cgi/l/email-protection#61000f05130412210508110d0e0c004f020815185e1214030b0402155c2c04445351080f1504130412004453512508110d0e0c000208151847030e05185c290e0d004d4451254451204451254451202c04445351061412150013a2cc00445351020e0f0e0204134453510ca2c012445351120e031304445351121412445351120413170802080e12445351050444535111130e1804020208a2d20f445351080f1504130f0002080e0f000d4f4451254451204451254451202f0e0c0313045b4451254451202e1306000f081b000208a2d20f5b44512544512035040da2c8070e0f0e5b44512544512044512544512026130002080012" class="btn btn-light" data-en="I&#39;m interested →">Me interesa →</a>
+      <a href="mailto:andres@diploma.city?subject=Me%20interesa%20Diplomacity&body=Hola,%0D%0A%0D%0AMe%20gustaría%20conocer%20más%20sobre%20sus%20servicios%20de%20proyección%20internacional.%0D%0A%0D%0ANombre:%0D%0AOrganización:%0D%0ATeléfono:%0D%0A%0D%0AGracias" class="btn btn-light" data-en="I&#39;m interested →">Me interesa →</a>
       <div class="contact-meta">
         <span data-en="Email us at">Escríbenos a</span>
-        <a href="/cdn-cgi/l/email-protection#86e7e8e2f4e3f5c6e2eff6eae9ebe7a8e5eff2ff"><span class="__cf_email__" data-cfemail="abcac5cfd9ced8ebcfc2dbc7c4c6ca85c8c2dfd2">[email&#160;protected]</span></a>
+        <a href="mailto:andres@diploma.city">andres@diploma.city</a>
         <span class="sep">·</span>
         <span data-en="Reply within 24–48 h">Respuesta en 24–48 h</span>
       </div>
@@ -423,7 +423,7 @@ footer{background:var(--ink-soft);color:rgba(255,255,255,.6);padding:44px 28px 3
         </div>
         <div class="foot-col">
           <h5 data-en="Contact">Contacto</h5>
-          <a href="/cdn-cgi/l/email-protection#5736393325322417333e273b383a3679343e232e"><span class="__cf_email__" data-cfemail="ea8b848e988f99aa8e839a8685878bc489839e93">[email&#160;protected]</span></a>
+          <a href="mailto:andres@diploma.city">andres@diploma.city</a>
           <a href="#">LinkedIn</a>
           <a href="#top" data-en="Back to top ↑">Volver arriba ↑</a>
         </div>
@@ -436,7 +436,7 @@ footer{background:var(--ink-soft);color:rgba(255,255,255,.6);padding:44px 28px 3
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ===== i18n: ES <-> EN =====
 function setLang(lang){
   document.documentElement.lang = lang;
@@ -464,8 +464,21 @@ function setLang(lang){
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
-  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  },{threshold:0, rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(e,i){ e.style.transitionDelay = (Math.min(i,4)*60)+'ms'; io.observe(e); });
+  // safety net: never leave content invisible (tall blocks, bottom of page, restored scroll)
+  function sweep(){
+    els.forEach(function(e){
+      if(e.classList.contains('in')) return;
+      var r = e.getBoundingClientRect();
+      if(r.top < innerHeight && r.bottom > 0){ e.classList.add('in'); io.unobserve(e); }
+    });
+  }
+  addEventListener('scroll', sweep, {passive:true});
+  addEventListener('resize', sweep);
+  addEventListener('load', sweep);
+  setTimeout(sweep, 400);
+  setTimeout(function(){ els.forEach(function(e){e.classList.add('in');}); }, 3500);
 })();
 
 // ===== Tweaks: brand color =====
